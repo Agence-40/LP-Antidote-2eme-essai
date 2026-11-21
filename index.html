@@ -520,11 +520,11 @@ form.envoye .merci { display: block; }
     </div>
 
     <!--
-      FORMULAIRE : les demandes sont envoyées au webhook Zapier ci-dessous
-      (Webhooks by Zapier → Catch Hook). Pour changer de destination,
-      remplacez l'URL de "action".
+      FORMULAIRE : les demandes sont envoyées par e-mail via FormSubmit (gratuit).
+      Pour changer l'adresse de réception, remplacez l'e-mail dans l'URL de "action".
     -->
-    <form id="formulaire" action="https://hooks.zapier.com/hooks/catch/10880765/45lyjh8/" method="POST">
+    <form id="formulaire" action="https://formsubmit.co/ajax/contact@agence-antidote.com" method="POST">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <h3>Réserver mon audit gratuit</h3>
       <p class="sous-titre">Réponse sous 24 h ouvrées. Sans engagement.</p>
       <label>Prénom et nom *<input type="text" name="nom" required autocomplete="name"></label>
@@ -596,11 +596,18 @@ const form = champ('formulaire');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   if (form.getAttribute("action")) {
-    const donnees = new URLSearchParams(new FormData(form));
-    donnees.append('page', location.href);
-    donnees.append('date', new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }));
+    const d = Object.fromEntries(new FormData(form));
+    const donnees = {
+      'Nom': d.nom, 'Entreprise': d.entreprise, 'Métier': d.metier, 'Zone': d.zone,
+      'Budget pub mensuel': d.budget, 'Téléphone': d.telephone, 'E-mail': d.email,
+      'Consentement': d.consentement ? 'oui' : 'non',
+      'Reçue le': new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
+      'Page': location.href,
+      _subject: 'Nouvelle demande d\'audit - ' + d.metier + ' - ' + d.zone,
+      _replyto: d.email, _template: 'table', _captcha: 'false', _honey: d._honey
+    };
     try {
-      await fetch(form.action, { method: 'POST', mode: 'no-cors', body: donnees });
+      await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(donnees) });
     } catch (err) { /* on affiche quand même le message */ }
   }
   form.classList.add('envoye');
