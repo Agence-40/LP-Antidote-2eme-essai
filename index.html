@@ -606,7 +606,7 @@ form.addEventListener('submit', async e => {
       'Reçue le': new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
       'Page': location.href,
       _subject: 'Nouvelle demande d\'audit - ' + d.metier + ' - ' + d.zone,
-      _replyto: d.email, _template: 'table', _captcha: 'false', _honey: d._honey
+      _replyto: d.email, _cc: 'xabarrie@hotmail.com', _template: 'table', _captcha: 'false', _honey: d._honey
     };
     // 1) E-mail via FormSubmit  2) Ligne dans le Google Sheet de suivi des leads
     await Promise.allSettled([
