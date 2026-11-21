@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antidote · Agence Google Ads & landing pages pour le BTP</title>
+<meta name="description" content="Antidote crée et gère vos campagnes Google Ads et vos landing pages pour transformer les recherches Google en demandes de devis exclusives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<style>
+/* ============ COULEURS & RÉGLAGES ============ */
+:root {
+  --sombre: #15171C;        /* sections foncées */
+  --sombre-2: #1F2229;      /* cartes sur fond foncé */
+  --pied: #0E0F12;          /* pied de page */
+  --orange: #FF6B1A;        /* boutons */
+  --orange-clair: #FF8A45;  /* accents sur fond bleu */
+  --orange-texte: #B8470B;  /* accents sur fond clair */
+  --creme: #F4F2ED;         /* fond de page */
+  --blanc: #FFFFFF;
+  --encre: #15171C;         /* texte principal */
+  --gris: #43464E;          /* texte secondaire */
+  --gris-clair: #C4C7CF;    /* texte secondaire sur fond foncé */
+  --vert: #1F7A45;
+  --rouge: #A12E1C;
+  --rayon: 20px;
+  --largeur: 1200px;
+}
+
+/* ============ BASE ============ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--encre); background: var(--creme); line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: "Space Grotesk", sans-serif; margin: 0; letter-spacing: -0.03em; line-height: 1.08; }
+h1 { font-size: clamp(40px, 5.4vw, 72px); }
+h2 { font-size: clamp(32px, 4vw, 52px); }
+h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+p { margin: 0; }
+em { font-family: "Instrument Serif", serif; font-weight: 400; color: var(--orange-texte); }
+.sombre em, h1 em { color: var(--orange-clair); }
+section[id] { scroll-margin-top: 80px; }
+
+.conteneur { max-width: var(--largeur); margin: 0 auto; padding: 0 24px; }
+.section { padding: 110px 0; }
+.sombre { background: var(--sombre); color: var(--creme); }
+.blanc { background: var(--blanc); }
+.surtitre { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-texte); margin-bottom: 16px; }
+.sombre .surtitre { color: var(--orange-clair); }
+.intro { max-width: 760px; }
+.intro p { margin-top: 18px; font-size: 18px; color: var(--gris); }
+.sombre .intro p, .sombre p { color: var(--gris-clair); }
+
+.grille { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 52px; }
+.carte { background: var(--blanc); border: 1px solid rgba(21,23,28,.06); border-radius: var(--rayon); padding: 32px; }
+.carte p { color: var(--gris); margin-top: 12px; }
+.sombre .carte { background: var(--sombre-2); border-color: rgba(255,255,255,.08); }
+.sombre .carte p { color: var(--gris-clair); }
+
+.bouton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 14px 26px; border-radius: 999px; border: 0; font: 700 17px Inter, sans-serif; text-decoration: none; cursor: pointer; transition: background .2s; }
+.bouton-orange { background: var(--orange); color: var(--encre); }
+.bouton-orange:hover { background: var(--orange-clair); }
+.bouton-contour { border: 1.5px solid var(--sombre); color: var(--sombre); background: transparent; }
+.bouton-contour:hover { background: rgba(21,23,28,.06); }
+
+/* ============ EN-TÊTE ============ */
+.entete { position: sticky; top: 0; z-index: 10; background: rgba(244,242,237,.94); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(21,23,28,.08); }
+.entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 20px "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
+.logo img { height: 34px; width: 34px; }
+.menu { display: flex; align-items: center; gap: 26px; font-size: 15px; font-weight: 500; }
+.menu a { text-decoration: none; }
+.menu .bouton { min-height: 44px; padding: 10px 20px; font-size: 15px; }
+
+/* ============ HÉRO ============ */
+.hero { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; padding: 80px 24px 64px; }
+.hero-texte { flex: 1 1 500px; display: flex; flex-direction: column; gap: 26px; }
+.badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; background: var(--blanc); border: 1px solid rgba(21,23,28,.1); padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+.point { width: 8px; height: 8px; border-radius: 50%; background: #1F9D55; }
+.hero-texte > p { font-size: 20px; color: var(--gris); max-width: 560px; }
+.hero-texte > p strong { font-weight: 800; }
+.boutons { display: flex; flex-wrap: wrap; gap: 14px; }
+.coches { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; color: var(--gris); }
+.coches li::before { content: "✓"; color: #1F9D55; font-weight: 700; margin-right: 8px; }
+
+.hero-visuel { flex: 1 1 400px; display: flex; flex-direction: column; gap: 16px; }
+.annonce { background: var(--blanc); border-radius: var(--rayon); padding: 24px; box-shadow: 0 30px 60px -30px rgba(21,23,28,.35); }
+.recherche { background: var(--creme); border-radius: 999px; padding: 12px 18px; color: var(--gris); }
+.annonce small { display: block; margin-top: 16px; color: var(--gris); }
+.annonce strong.titre { display: block; font-size: 20px; font-weight: 500; color: #1A47B8; margin: 4px 0; }
+.annonce p { font-size: 14px; color: var(--gris); }
+.extensions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.extensions span { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid #D5D2CA; }
+.mini-cartes { display: flex; flex-wrap: wrap; gap: 16px; }
+.mini-cartes > div { flex: 1 1 180px; border-radius: 18px; padding: 20px; }
+.notif { background: var(--sombre); color: var(--creme); }
+.notif small { color: #A9ADB8; }
+.notif-titre { display: block; font: 700 15px "Space Grotesk", sans-serif; margin-bottom: 8px; }
+.point-orange { color: var(--orange); }
+.notif strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 18px; margin: 6px 0 2px; }
+.cpl { background: var(--blanc); }
+.cpl strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 34px; }
+.cpl span { color: var(--vert); font-weight: 600; font-size: 14px; }
+
+/* ============ CHIFFRES ============ */
+.chiffres { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); background: var(--blanc); border-radius: 24px; border: 1px solid rgba(21,23,28,.06); margin-bottom: 56px; }
+.chiffres div { padding: 32px; text-align: center; border-right: 1px solid rgba(21,23,28,.08); }
+.chiffres div:last-child { border-right: 0; }
+.chiffres strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 44px; letter-spacing: -0.03em; }
+.chiffres span { color: var(--gris); font-size: 15px; }
+
+/* ============ BANDEAU MÉTIERS ============ */
+.bandeau { background: var(--sombre); color: var(--creme); overflow: hidden; padding: 20px 0; }
+.defilement { display: flex; gap: 48px; width: max-content; animation: defile 38s linear infinite; font: 600 22px "Space Grotesk", sans-serif; white-space: nowrap; }
+.defilement span { display: inline-flex; align-items: center; gap: 12px; margin-right: 16px; }
+.defilement .picto { width: 28px; height: 28px; flex: 0 0 28px; stroke: var(--orange-clair); }
+@keyframes defile { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .defilement { animation: none; } }
+
+/* ============ PROBLÈME ============ */
+.numero { font: 700 48px "Space Grotesk", sans-serif; color: #D5D2CA; line-height: 1; margin-bottom: 14px; }
+.conclusion { margin-top: 40px; font: 500 20px/1.5 "Space Grotesk", sans-serif; max-width: 820px; }
+.surligne { background: #FFE2CF; padding: 0 6px; border-radius: 4px; }
+
+/* ============ SERVICES ============ */
+.services .carte h3 { font-size: 26px; margin-top: 18px; }
+.icone { width: 52px; height: 52px; border-radius: 14px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+.icone svg { width: 26px; height: 26px; stroke: var(--encre); }
+.liste { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.liste li::before { content: "→"; color: var(--orange-clair); margin-right: 10px; }
+.services .grille { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+/* ============ SIMULATEUR ============ */
+.simulateur { display: flex; flex-wrap: wrap; gap: 48px; }
+.simulateur > div { flex: 1 1 440px; }
+.curseurs { margin-top: 28px; background: var(--blanc); border-radius: var(--rayon); padding: 28px; display: flex; flex-direction: column; gap: 24px; }
+.curseurs label { display: flex; flex-direction: column; gap: 10px; font-weight: 600; font-size: 15px; }
+.curseurs label span { display: flex; justify-content: space-between; }
+.curseurs output { color: var(--orange-texte); }
+input[type=range] { width: 100%; accent-color: var(--orange); }
+.resultat { background: var(--sombre); color: var(--creme); border-radius: 28px; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+.resultat .gros { font: 700 clamp(48px, 6vw, 76px)/1 "Space Grotesk", sans-serif; color: var(--orange-clair); letter-spacing: -0.04em; margin: 8px 0; }
+.resultat .petits { display: flex; flex-wrap: wrap; gap: 14px; }
+.resultat .petits div { flex: 1 1 150px; background: var(--sombre-2); border-radius: 16px; padding: 20px; }
+.resultat .petits strong { display: block; font: 700 36px "Space Grotesk", sans-serif; }
+.resultat small { color: var(--gris-clair); }
+
+/* ============ MÉTHODE ============ */
+.etapes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 52px; border-top: 2px solid var(--sombre); padding-top: 28px; }
+.etapes p { color: var(--gris); margin-top: 10px; font-size: 15px; }
+.etape-num { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 14px; font-weight: 600; color: var(--gris); }
+.etape-num b { width: 40px; height: 40px; border-radius: 50%; background: var(--sombre); color: var(--blanc); display: flex; align-items: center; justify-content: center; font-family: "Space Grotesk", sans-serif; }
+.etapes > div:first-child .etape-num b { background: var(--orange); color: var(--encre); }
+
+/* ============ RÉSULTATS ============ */
+.intro .note-modele { display: inline-block; font-size: 14px; background: #FFE2CF; padding: 10px 14px; border-radius: 10px; }
+.etiquette { display: inline-block; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--creme); }
+.cas .kpis { display: flex; gap: 12px; border-top: 1px solid rgba(21,23,28,.08); padding-top: 20px; margin-top: 20px; }
+.cas .kpis div { flex: 1; }
+.cas .kpis strong { display: block; font: 700 30px "Space Grotesk", sans-serif; }
+.cas .kpis strong.vert { color: var(--vert); }
+.cas .kpis span { font-size: 13px; color: var(--gris); }
+.avis { background: #EAE7E0; border-radius: var(--rayon); padding: 32px; margin: 0; }
+.avis .etoiles { color: var(--orange-texte); letter-spacing: 3px; }
+.avis blockquote { margin: 12px 0 20px; font-size: 17px; }
+.avis figcaption { font-size: 14px; color: var(--gris); }
+.avis figcaption strong { display: block; color: var(--encre); font-size: 15px; }
+
+/* ============ COMPARATIF ============ */
+.tableau { margin-top: 48px; overflow-x: auto; background: var(--blanc); border-radius: var(--rayon); border: 1px solid rgba(21,23,28,.08); }
+table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 15px; }
+th, td { padding: 18px 20px; text-align: center; border-bottom: 1px solid rgba(21,23,28,.06); }
+th:first-child, td:first-child { text-align: left; font-weight: 500; }
+thead th { color: var(--gris); font-weight: 600; }
+.colonne-nous { background: #FFF4EC; font-weight: 600; }
+thead .colonne-nous { background: var(--sombre); color: var(--orange-clair); font-family: "Space Grotesk", sans-serif; font-size: 17px; }
+.pour-qui h3.oui { color: var(--vert); }
+.pour-qui h3.non { color: var(--rouge); }
+.pour-qui ul { padding-left: 20px; margin: 16px 0 0; }
+.pour-qui li { margin-bottom: 8px; }
+
+/* ============ FONDATEUR ============ */
+.fondateur { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
+.photo { flex: 0 1 360px; min-width: 240px; aspect-ratio: 4/5; border-radius: 24px; background: #2A2E37; border: 1.5px dashed #5A5F6B; display: flex; align-items: center; justify-content: center; color: var(--gris-clair); }
+.fondateur > div:last-child { flex: 1 1 460px; display: flex; flex-direction: column; gap: 20px; }
+.fondateur p { font-size: 18px; }
+.pastilles { display: flex; flex-wrap: wrap; gap: 10px; }
+.pastilles span { font-size: 14px; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); }
+
+/* ============ FAQ ============ */
+.faq { max-width: 860px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+.faq details { background: var(--blanc); border: 1px solid rgba(21,23,28,.08); border-radius: 16px; padding: 0 24px; }
+.faq summary { cursor: pointer; list-style: none; padding: 22px 0; display: flex; justify-content: space-between; gap: 16px; font: 600 18px "Space Grotesk", sans-serif; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: 0 0 32px; height: 32px; border-radius: 50%; background: var(--creme); display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding-bottom: 22px; color: var(--gris); }
+
+/* ============ FORMULAIRE ============ */
+.audit { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+form input, form select { width: 100%; min-width: 0; }
+@media (max-width: 900px) { .audit { grid-template-columns: 1fr; } }
+.audit > div { flex: 1 1 440px; display: flex; flex-direction: column; gap: 20px; }
+.audit .coches { flex-direction: column; color: var(--creme); font-size: 16px; }
+.audit .coches li::before { color: var(--orange-clair); }
+.exclu { background: var(--sombre-2); border: 1px solid rgba(255,138,69,.4); border-radius: 16px; padding: 18px 20px; font-size: 15px; }
+form { flex: 1 1 460px; background: var(--creme); color: var(--encre); border-radius: 28px; padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+form h3 { grid-column: 1 / -1; font-size: 26px; }
+form .sous-titre { grid-column: 1 / -1; color: var(--gris); font-size: 15px; margin-top: -8px; }
+form label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; }
+form .large { grid-column: 1 / -1; }
+form input, form select { height: 50px; border-radius: 12px; border: 1px solid #C9C5BC; padding: 0 14px; font: 16px Inter, sans-serif; background: var(--blanc); color: var(--encre); }
+form input:focus, form select:focus { outline: 2px solid var(--orange); outline-offset: 1px; }
+form .consentement { flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 400; font-size: 13px; color: var(--gris); }
+form .consentement input { width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--orange); }
+form .bouton { grid-column: 1 / -1; }
+.merci { display: none; grid-column: 1 / -1; text-align: center; padding: 30px 0; }
+form.envoye > *:not(.merci) { display: none; }
+form.envoye .merci { display: block; }
+
+/* ============ PIED DE PAGE ============ */
+.pied { background: var(--pied); color: var(--gris-clair); padding: 48px 0; font-size: 14px; }
+.pied .conteneur { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.pied-nom { font: 700 18px "Space Grotesk", sans-serif; color: var(--creme); margin-bottom: 8px; }
+.pied nav { display: flex; gap: 24px; flex-wrap: wrap; }
+
+/* ============ MOBILE ============ */
+@media (max-width: 760px) {
+  .menu a:not(.bouton) { display: none; }
+  .section { padding: 72px 0; }
+  .chiffres div { border-right: 0; border-bottom: 1px solid rgba(21,23,28,.08); }
+  form { grid-template-columns: 1fr; padding: 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============ EN-TÊTE ============ -->
+<header class="entete">
+  <div class="conteneur">
+    <a href="#top" class="logo"><img src="data:image/png;base64,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" alt="">Antidote.</a>
+    <nav class="menu">
+      <a href="#services">Services</a>
+      <a href="#simulateur">Simulateur</a>
+      <a href="#methode">Méthode</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#faq">FAQ</a>
+      <a href="#audit" class="bouton bouton-orange">Audit gratuit →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HÉRO ============ -->
+<section class="conteneur hero">
+  <div class="hero-texte">
+    <span class="badge"><span class="point"></span>Agence Google Ads &amp; landing pages 100 % dédiée au BTP</span>
+    <h1>Remplissez votre planning de <em>chantiers rentables</em> grâce à Google Ads<em>.</em></h1>
+    <p>Campagnes Google Ads et landing pages conçues pour les artisans et entreprises du bâtiment. Des <strong>demandes de devis exclusives, dans votre zone, chaque semaine.</strong></p>
+    <div class="boutons">
+      <a href="#audit" class="bouton bouton-orange">Obtenir mon audit gratuit →</a>
+      <a href="#simulateur" class="bouton bouton-contour">Simuler mes chantiers ↘</a>
+    </div>
+    <ul class="coches">
+      <li>Audit offert de 30 min</li>
+      <li>Un seul artisan par métier et par zone</li>
+      <li>Compte Google Ads à votre nom</li>
+    </ul>
+  </div>
+
+  <div class="hero-visuel" aria-hidden="true">
+    <div class="annonce">
+      <div class="recherche">pompe à chaleur [votre ville] devis</div>
+      <small><strong>Sponsorisé</strong> · www.votre-client.fr</small>
+      <strong class="titre">Pompe à chaleur Dax — Devis gratuit sous 24 h</strong>
+      <p>Pompe à chaleur et Climatisation. Artisan certifié RGE, garantie décennale. Intervention rapide.</p>
+      <div class="extensions"><span>Appeler</span><span>Demander un devis</span><span>Nos réalisations</span></div>
+    </div>
+    <div class="mini-cartes">
+      <div class="notif">
+        <b class="notif-titre">Ce que vous recevrez par e-mail :</b>
+        <small><span class="point-orange">●</span> Nouvelle demande · il y a 3 min</small>
+        <strong>Pompe à chaleur 8 kW</strong>
+        <small>Maison individuelle 110 m² · travaux sous 2 mois, Dax</small>
+      </div>
+      <div class="cpl">
+        <small>Nombre de devis du mois :</small>
+        <strong>27</strong>
+        <span>+18 % en 30 jours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHIFFRES ============ -->
+<div class="conteneur">
+  <div class="chiffres">
+    <div><strong>18</strong><span>entreprises du BTP accompagnées actuellement</span></div>
+    <div><strong>2,1 M€</strong><span>de budget publicitaire piloté</span></div>
+    <div><strong>+10 ans</strong><span>d'expérience en Google Ads</span></div>
+    <div><strong>4,7/5</strong><span>de satisfaction client moyenne</span></div>
+  </div>
+</div>
+
+<!-- ============ BANDEAU MÉTIERS ============ -->
+<div class="bandeau" aria-label="Métiers accompagnés">
+  <div class="defilement">
+    <span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/><path d="M8 13h8M8 16h8"/></svg>Couvreurs</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h6"/><path d="M10 4v4"/><path d="M3 9v6"/><path d="M3 10h11a4 4 0 0 1 4 4v1"/><path d="M19.2 20.3a1.2 1.2 0 0 1-2.4 0c0-.9 1.2-2.2 1.2-2.2s1.2 1.3 1.2 2.2z"/></svg>Plombiers-chauffagistes</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="10" cy="12" r="4"/><path d="M10 8v8M6 12h8"/><path d="M17 9v6"/></svg>Installateurs de pompes à chaleur</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 14h6l-1 8 8-12h-6z"/></svg>Électriciens</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18M4 12h16"/></svg>Menuisiers</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 10h18M3 15h18M9 5v5M15 10v5M9 15v4"/></svg>Maçons</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="15" height="6" rx="1"/><path d="M18 6h3v5h-9v3"/><rect x="10" y="14" width="4" height="7" rx="1"/></svg>Entreprises de rénovation</span><span><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6c3-2 6 2 9 0s6-2 9 0"/><path d="M3 12c3-2 6 2 9 0s6-2 9 0"/><path d="M3 18c3-2 6 2 9 0s6-2 9 0"/></svg>Isolation</span>
+    <span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/><path d="M8 13h8M8 16h8"/></svg>Couvreurs</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h6"/><path d="M10 4v4"/><path d="M3 9v6"/><path d="M3 10h11a4 4 0 0 1 4 4v1"/><path d="M19.2 20.3a1.2 1.2 0 0 1-2.4 0c0-.9 1.2-2.2 1.2-2.2s1.2 1.3 1.2 2.2z"/></svg>Plombiers-chauffagistes</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="10" cy="12" r="4"/><path d="M10 8v8M6 12h8"/><path d="M17 9v6"/></svg>Installateurs de pompes à chaleur</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 14h6l-1 8 8-12h-6z"/></svg>Électriciens</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18M4 12h16"/></svg>Menuisiers</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 10h18M3 15h18M9 5v5M15 10v5M9 15v4"/></svg>Maçons</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="15" height="6" rx="1"/><path d="M18 6h3v5h-9v3"/><rect x="10" y="14" width="4" height="7" rx="1"/></svg>Entreprises de rénovation</span><span aria-hidden="true"><svg class="picto" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6c3-2 6 2 9 0s6-2 9 0"/><path d="M3 12c3-2 6 2 9 0s6-2 9 0"/><path d="M3 18c3-2 6 2 9 0s6-2 9 0"/></svg>Isolation</span>
+  </div>
+</div>
+
+<!-- ============ PROBLÈME ============ -->
+<section class="section">
+  <div class="conteneur">
+    <div class="intro">
+      <div class="surtitre">Le constat</div>
+      <h2>Vous connaissez déjà <em>ce cycle.</em></h2>
+      <p>Un mois l'agenda déborde, le suivant il est vide. Votre savoir-faire n'est pas en cause : c'est votre façon de trouver des clients qui n'est pas maîtrisée.</p>
+    </div>
+    <div class="grille">
+      <div class="carte"><div class="numero">01</div><h3>Le bouche-à-oreille ne se commande pas</h3><p>Il fait vivre l'entreprise, mais vous ne pouvez ni l'accélérer ni le prévoir. Impossible d'embaucher ou d'investir sereinement.</p></div>
+      <div class="carte"><div class="numero">02</div><h3>Les plateformes revendent vos leads</h3><p>Le même particulier est envoyé à 4 ou 5 artisans. Vous payez pour entrer dans une guerre des prix, et le client retient le moins cher.</p></div>
+      <div class="carte"><div class="numero">03</div><h3>Google Ads a déjà « brûlé » votre budget</h3><p>Des clics sur « emploi couvreur » ou « tuto fuite toit », une page d'accueil qui ne convertit pas, aucun suivi des appels. Et la conclusion : « Google, ça ne marche pas ».</p></div>
+    </div>
+    <p class="conclusion">Le problème n'est pas Google. C'est l'absence d'un <span class="surligne">système complet</span> : la bonne recherche, la bonne annonce, la bonne page, et le suivi jusqu'au devis signé.</p>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="section sombre services">
+  <div class="conteneur">
+    <div class="intro">
+      <div class="surtitre">Nos expertises</div>
+      <h2>Un système d'acquisition, <em>pas une pub de plus.</em></h2>
+      <p>Chaque brique est pensée pour l'autre. Une campagne sans bonne page gaspille le budget ; une belle page sans trafic qualifié reste vide.</p>
+    </div>
+    <div class="grille">
+      <div class="carte">
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+        <h3>Création &amp; gestion de campagnes Google Ads</h3>
+        <p>Être en haut de Google, au moment exact où un particulier de votre zone cherche votre métier. Et uniquement sur les recherches qui mènent à un chantier.</p>
+        <ul class="liste">
+          <li>Campagnes Search géolocalisées par métier et par commune</li>
+          <li>Exclusion des recherches inutiles (emploi, formation, bricolage)</li>
+          <li>Annonces d'appel, Performance Max et remarketing</li>
+          <li>Ajustement des enchères et tests d'annonces chaque semaine</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8M8 17h5"/></svg></div>
+        <h3>Landing pages qui transforment les visites en devis</h3>
+        <p>Votre site vitrine n'est pas fait pour convertir une publicité. Nous créons des pages dédiées, une par prestation et par zone, pensées pour le mobile.</p>
+        <ul class="liste">
+          <li>Rédaction orientée conversion, avec vos réalisations et vos labels (RGE, Qualibat…)</li>
+          <li>Formulaire qualifiant : type de travaux, surface, délai, budget</li>
+          <li>Bouton d'appel en un geste, chargement rapide sur mobile</li>
+          <li>Tests A/B continus sur les titres, offres et formulaires</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grille" style="margin-top:20px">
+      <div class="carte"><h3>Suivi des conversions &amp; reporting</h3><p>Appels, formulaires, devis envoyés, chantiers signés : vous savez combien vous coûte chaque client. Un tableau de bord clair, un point mensuel.</p></div>
+      <div class="carte"><h3>Fiche Google &amp; avis clients</h3><p>Optimisation de votre fiche d'établissement et collecte d'avis après chantier, pour gagner la confiance avant même le premier appel.</p></div>
+      <div class="carte"><h3>Process de rappel des prospects</h3><p>Alerte instantanée par SMS ou e-mail et script de rappel : un prospect rappelé en 5 minutes signe bien plus souvent qu'un prospect rappelé le lendemain.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMULATEUR ============ -->
+<section id="simulateur" class="section">
+  <div class="conteneur simulateur">
+    <div>
+      <div class="surtitre">Simulateur</div>
+      <h2>Combien de chantiers Google pourrait vous <em>apporter ?</em></h2>
+      <p style="margin-top:18px;color:var(--gris)">Ajustez les curseurs selon votre activité. Le coût par demande varie selon le métier et la zone : nous le chiffrons précisément pendant l'audit.</p>
+      <div class="curseurs">
+        <label><span>Budget publicitaire mensuel <output id="o-budget"></output></span><input type="range" id="budget" min="500" max="10000" step="100" value="1500"></label>
+        <label><span>Coût moyen d'une demande de devis <output id="o-cpl"></output></span><input type="range" id="cpl" min="15" max="150" step="5" value="40"></label>
+        <label><span>Taux de signature de vos devis <output id="o-taux"></output></span><input type="range" id="taux" min="5" max="60" step="1" value="25"></label>
+        <label><span>Montant moyen d'un chantier <output id="o-panier"></output></span><input type="range" id="panier" min="500" max="50000" step="500" value="8000"></label>
+      </div>
+    </div>
+    <div class="resultat">
+      <div>
+        <small>Chiffre d'affaires potentiel par mois</small>
+        <div class="gros" id="r-ca"></div>
+        <small>soit <strong id="r-ratio" style="color:var(--creme)"></strong> de chiffre d'affaires pour 1 € investi en publicité</small>
+      </div>
+      <div class="petits">
+        <div><strong id="r-demandes"></strong><small>demandes de devis / mois</small></div>
+        <div><strong id="r-chantiers"></strong><small>chantiers signés / mois</small></div>
+      </div>
+      <div>
+        <a href="#audit" class="bouton bouton-orange" style="width:100%">Vérifier ces chiffres pour ma zone →</a>
+        <small style="display:block;margin-top:12px">Simulation indicative fondée sur vos hypothèses. Elle ne constitue pas une promesse de résultat.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section id="methode" class="section blanc">
+  <div class="conteneur">
+    <div class="intro">
+      <div class="surtitre">La méthode</div>
+      <h2>90 jours pour un agenda <em>prévisible.</em></h2>
+      <p>Vous gérez vos chantiers. Nous gérons tout le reste, avec un interlocuteur unique qui connaît votre métier.</p>
+    </div>
+    <div class="etapes">
+      <div><div class="etape-num"><b>1</b>Jours 1 à 7</div><h3>Audit &amp; stratégie</h3><p>Analyse de votre zone, de vos concurrents et du volume de recherches. Vous repartez avec un plan d'action chiffré, même si on ne travaille pas ensemble.</p></div>
+      <div><div class="etape-num"><b>2</b>Jours 7 à 21</div><h3>Construction</h3><p>Création des landing pages, des campagnes et du suivi des appels et formulaires. Vous validez tout avant la mise en ligne.</p></div>
+      <div><div class="etape-num"><b>3</b>Jours 21 à 60</div><h3>Lancement &amp; optimisation</h3><p>Premières demandes, tri des mots-clés, tests d'annonces et de pages. Le coût par demande baisse semaine après semaine.</p></div>
+      <div><div class="etape-num"><b>4</b>Jours 60 à 90</div><h3>Montée en puissance</h3><p>On augmente le budget sur ce qui signe, on ouvre de nouvelles zones ou prestations. Votre agenda devient pilotable.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉSULTATS ============ -->
+<section id="resultats" class="section">
+  <div class="conteneur">
+    <div class="intro">
+      <div class="surtitre">Résultats clients</div>
+      <h2>Ce que ça donne <em>sur le terrain.</em></h2>
+      <p class="note-modele">Modèle de mise en page : remplacez les crochets par vos études de cas réelles.</p>
+    </div>
+    <!-- Remplacez les éléments entre crochets par vos études de cas réelles -->
+    <div class="grille">
+      <article class="carte cas"><span class="etiquette">[Couvreur]</span><h3 style="margin-top:16px">[Entreprise · Ville] : de [X] à [XX] demandes de devis par mois</h3><div class="kpis"><div><strong>[XX] €</strong><span>coût par demande</span></div><div><strong class="vert">×[X]</strong><span>demandes mensuelles</span></div></div></article>
+      <article class="carte cas"><span class="etiquette">[Pompe à chaleur]</span><h3 style="margin-top:16px">[Entreprise · Ville] : [XX] chantiers signés en 90 jours</h3><div class="kpis"><div><strong>[XXX] k€</strong><span>CA signé</span></div><div><strong class="vert">[XX]×</strong><span>retour sur budget pub</span></div></div></article>
+      <article class="carte cas"><span class="etiquette">[Rénovation]</span><h3 style="margin-top:16px">[Entreprise · Ville] : sortie des plateformes de leads</h3><div class="kpis"><div><strong>[−XX] %</strong><span>coût d'acquisition</span></div><div><strong class="vert">100 %</strong><span>leads exclusifs</span></div></div></article>
+    </div>
+    <!-- Témoignages : remplacez par de vrais avis clients -->
+    <div class="grille">
+      <figure class="avis"><div class="etoiles">★★★★★</div><blockquote>[Témoignage client à insérer : le problème avant, ce qui a changé, un résultat concret.]</blockquote><figcaption><strong>[Prénom N.]</strong>[Métier · Ville]</figcaption></figure>
+      <figure class="avis"><div class="etoiles">★★★★★</div><blockquote>[Témoignage client à insérer : la relation avec l'agence, la réactivité, la clarté du suivi.]</blockquote><figcaption><strong>[Prénom N.]</strong>[Métier · Ville]</figcaption></figure>
+      <figure class="avis"><div class="etoiles">★★★★★</div><blockquote>[Témoignage client à insérer : un chiffre marquant, par exemple le nombre de chantiers signés.]</blockquote><figcaption><strong>[Prénom N.]</strong>[Métier · Ville]</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARATIF ============ -->
+<section class="section" style="padding-top:0">
+  <div class="conteneur">
+    <div class="intro">
+      <div class="surtitre">Pourquoi nous</div>
+      <h2>Vos leads, <em>rien qu'à vous.</em></h2>
+    </div>
+    <div class="tableau">
+      <table>
+        <thead><tr><th>Critère</th><th>Plateformes de leads</th><th>Agence généraliste</th><th class="colonne-nous">[Votre agence]</th></tr></thead>
+        <tbody>
+          <tr><td>Leads exclusifs</td><td>✕ Partagés</td><td>✓</td><td class="colonne-nous">✓ 100 % exclusifs</td></tr>
+          <tr><td>Spécialisation BTP</td><td>~</td><td>✕</td><td class="colonne-nous">✓ Uniquement le BTP</td></tr>
+          <tr><td>Landing page par métier et zone</td><td>✕</td><td>~ Rarement</td><td class="colonne-nous">✓ Incluse</td></tr>
+          <tr><td>Compte et données à votre nom</td><td>✕</td><td>~ Pas toujours</td><td class="colonne-nous">✓ Toujours</td></tr>
+          <tr><td>Suivi jusqu'au devis signé</td><td>✕</td><td>✕ Clics et impressions</td><td class="colonne-nous">✓ Coût par chantier</td></tr>
+          <tr><td>Exclusivité sur votre zone</td><td>✕</td><td>✕</td><td class="colonne-nous">✓ 1 artisan par métier</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grille pour-qui">
+      <div class="carte"><h3 class="oui">C'est pour vous si…</h3><ul><li>Vous êtes une entreprise du bâtiment qui veut choisir ses chantiers</li><li>Vous pouvez absorber plus de demandes ou recruter</li><li>Vous pouvez investir au moins [XXX] € par mois en publicité</li><li>Vous rappelez vos prospects rapidement</li></ul></div>
+      <div class="carte"><h3 class="non">Ce n'est pas pour vous si…</h3><ul><li>Vous cherchez l'agence la moins chère du marché</li><li>Vous attendez des résultats garantis sans test</li><li>Votre planning est déjà plein pour 12 mois</li><li>Vous ne souhaitez pas suivre les devis signés</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FONDATEUR ============ -->
+<section class="section sombre">
+  <div class="conteneur fondateur">
+    <div class="photo">[Photo du fondateur]</div>
+    <div>
+      <div class="surtitre" style="margin:0">Qui sommes-nous</div>
+      <h2>Une agence qui parle <em>chantier,</em> pas jargon.</h2>
+      <p>[Prénom Nom] a fondé [Votre agence] après [X] ans passés à gérer des campagnes Google Ads. Le constat : les artisans et entreprises du BTP étaient soit ignorés par les agences, soit noyés sous des rapports incompréhensibles.</p>
+      <p>Notre parti pris : une seule spécialité, le bâtiment. Nous connaissons vos saisons, vos marges et vos contraintes de zone. Lors du premier échange, vous parlez directement à un expert, jamais à un commercial.</p>
+      <div class="pastilles"><span>[Badge Google Partner]</span><span>Certifié Google Ads</span><span>Basés à [Ville]</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section">
+  <div class="conteneur">
+    <div class="intro" style="margin:0 auto;text-align:center">
+      <div class="surtitre">Questions fréquentes</div>
+      <h2>Ce qu'on nous demande <em>toujours.</em></h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Quel budget faut-il prévoir pour démarrer ?</summary><p>Cela dépend de votre métier et de votre zone. Pour la plupart des artisans, un budget publicitaire à partir de [XXX] € par mois permet d'obtenir des données fiables en quelques semaines. Nous le chiffrons précisément pendant l'audit gratuit.</p></details>
+      <details open><summary>En combien de temps arrivent les premières demandes ?</summary><p>Les campagnes sont en ligne environ 2 à 3 semaines après le lancement du projet. Les premières demandes arrivent généralement dans les jours qui suivent la mise en ligne.</p></details>
+      <details><summary>Combien coûtent vos services ?</summary><p>Nos honoraires sont séparés de votre budget publicitaire, que vous payez directement à Google. Nous fonctionnons au forfait mensuel à partir de [XXX] € HT, avec des frais de création pour les landing pages. Aucune commission cachée.</p></details>
+      <details><summary>Y a-t-il un engagement de durée ?</summary><p>Nous recommandons [3] mois pour laisser le temps aux campagnes d'apprendre et d'être optimisées. Ensuite, l'accompagnement est sans engagement, résiliable chaque mois.</p></details>
+      <details><summary>Est-ce que je reste propriétaire de mon compte et de mes pages ?</summary><p>Oui. Le compte Google Ads est créé à votre nom et vos landing pages vous appartiennent. Si nous arrêtons de travailler ensemble, vous gardez tout : historique, données et pages.</p></details>
+      <details><summary>Quelle différence avec une plateforme de mise en relation ?</summary><p>Une plateforme revend la même demande à plusieurs artisans. Avec nous, chaque demande provient de votre propre publicité et de votre propre page : elle est 100 % exclusive et le client vous a choisi, vous.</p></details>
+      <details><summary>Je n'ai pas le temps de m'en occuper. Que dois-je faire ?</summary><p>Presque rien. Un rendez-vous de lancement d'une heure, la validation des pages, puis vous traitez les demandes. Nous gérons la création, le suivi et les optimisations, avec un point mensuel.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIT + FORMULAIRE ============ -->
+<section id="audit" class="section sombre">
+  <div class="conteneur audit">
+    <div>
+      <div class="surtitre" style="margin:0">Audit gratuit · 30 min</div>
+      <h2>Combien de chantiers passent à côté de vous <em>chaque mois ?</em></h2>
+      <p style="font-size:18px">En 30 minutes, nous analysons le potentiel de recherches dans votre zone, ce que font vos concurrents et le budget nécessaire. Vous repartez avec un plan d'action, que vous travailliez avec nous ou non.</p>
+      <ul class="coches">
+        <li>Volume de recherches de votre métier dans votre zone</li>
+        <li>Estimation du coût par demande de devis</li>
+        <li>Audit de votre compte Google Ads existant, s'il y en a un</li>
+      </ul>
+      <div class="exclu"><strong>Exclusivité de zone :</strong> nous ne travaillons qu'avec une seule entreprise par métier et par secteur. Encore [X] places ce mois-ci.</div>
+    </div>
+
+    <!--
+      FORMULAIRE : remplacez l'URL de "action" par celle de votre outil
+      (Formspree, Make, Zapier, Brevo, votre CRM…). Laissée vide, le formulaire
+      affiche simplement le message de remerciement sans rien envoyer.
+    -->
+    <form id="formulaire" action="" method="POST">
+      <h3>Réserver mon audit gratuit</h3>
+      <p class="sous-titre">Réponse sous 24 h ouvrées. Sans engagement.</p>
+      <label>Prénom et nom *<input type="text" name="nom" required autocomplete="name"></label>
+      <label>Entreprise *<input type="text" name="entreprise" required autocomplete="organization"></label>
+      <label>Votre métier *
+        <select name="metier" required>
+          <option value="">Choisir…</option>
+          <option>Couverture / zinguerie</option><option>Plomberie / chauffage</option><option>Pompe à chaleur / climatisation</option><option>Électricité</option><option>Menuiserie / fenêtres</option><option>Maçonnerie / gros œuvre</option><option>Rénovation globale / énergétique</option><option>Isolation</option><option>Paysagisme / piscine</option><option>Construction de maisons</option><option>Autre</option>
+        </select>
+      </label>
+      <label>Zone d'intervention *<input type="text" name="zone" required placeholder="Ex. : Lyon + 30 km"></label>
+      <label class="large">Budget publicitaire mensuel envisagé *
+        <select name="budget" required>
+          <option value="">Choisir…</option>
+          <option>Moins de 1 000 €</option><option>1 000 € à 3 000 €</option><option>3 000 € à 6 000 €</option><option>Plus de 6 000 €</option><option>Je ne sais pas encore</option>
+        </select>
+      </label>
+      <label>Téléphone *<input type="tel" name="telephone" required autocomplete="tel"></label>
+      <label>E-mail *<input type="email" name="email" required autocomplete="email"></label>
+      <label class="large consentement"><input type="checkbox" required>J'accepte d'être recontacté au sujet de ma demande. Mes données ne sont jamais revendues.</label>
+      <button type="submit" class="bouton bouton-orange">Réserver mon audit gratuit →</button>
+      <div class="merci">
+        <h3>Demande reçue, merci !</h3>
+        <p style="color:var(--gris);margin-top:10px">Un expert vous rappelle sous 24 h ouvrées pour caler votre audit.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="pied">
+  <div class="conteneur">
+    <div>
+      <p class="pied-nom">[Votre agence]</p>
+      <p>Agence Google Ads &amp; landing pages pour les entreprises du BTP</p>
+      <p>[Adresse] · [SIRET] · [Téléphone]</p>
+    </div>
+    <nav><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a><a href="#audit">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+/* ---- Simulateur ---- */
+const champ = id => document.getElementById(id);
+const euros = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+function calculer() {
+  const budget = +champ('budget').value, cpl = +champ('cpl').value,
+        taux = +champ('taux').value, panier = +champ('panier').value;
+  const demandes = Math.floor(budget / cpl);
+  const chantiers = Math.round(demandes * taux / 100);
+  const ca = chantiers * panier;
+  champ('o-budget').textContent = euros(budget);
+  champ('o-cpl').textContent = euros(cpl);
+  champ('o-taux').textContent = taux + ' %';
+  champ('o-panier').textContent = euros(panier);
+  champ('r-demandes').textContent = demandes;
+  champ('r-chantiers').textContent = chantiers;
+  champ('r-ca').textContent = euros(ca);
+  champ('r-ratio').textContent = (ca / budget).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' €';
+}
+['budget', 'cpl', 'taux', 'panier'].forEach(id => champ(id).addEventListener('input', calculer));
+calculer();
+
+/* ---- Formulaire ---- */
+const form = champ('formulaire');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (form.getAttribute("action")) {
+    try {
+      await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    } catch (err) { /* on affiche quand même le message */ }
+  }
+  form.classList.add('envoye');
+});
+</script>
+</body>
+</html>
