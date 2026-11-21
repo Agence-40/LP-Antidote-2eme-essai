@@ -520,11 +520,11 @@ form.envoye .merci { display: block; }
     </div>
 
     <!--
-      FORMULAIRE : remplacez l'URL de "action" par celle de votre outil
-      (Formspree, Make, Zapier, Brevo, votre CRM…). Laissée vide, le formulaire
-      affiche simplement le message de remerciement sans rien envoyer.
+      FORMULAIRE : les demandes sont envoyées au webhook Zapier ci-dessous
+      (Webhooks by Zapier → Catch Hook). Pour changer de destination,
+      remplacez l'URL de "action".
     -->
-    <form id="formulaire" action="" method="POST">
+    <form id="formulaire" action="https://hooks.zapier.com/hooks/catch/10880765/45lyjh8/" method="POST">
       <h3>Réserver mon audit gratuit</h3>
       <p class="sous-titre">Réponse sous 24 h ouvrées. Sans engagement.</p>
       <label>Prénom et nom *<input type="text" name="nom" required autocomplete="name"></label>
@@ -544,7 +544,7 @@ form.envoye .merci { display: block; }
       </label>
       <label>Téléphone *<input type="tel" name="telephone" required autocomplete="tel"></label>
       <label>E-mail *<input type="email" name="email" required autocomplete="email"></label>
-      <label class="large consentement"><input type="checkbox" required>J'accepte d'être recontacté au sujet de ma demande. Mes données ne sont jamais revendues.</label>
+      <label class="large consentement"><input type="checkbox" name="consentement" value="oui" required>J'accepte d'être recontacté au sujet de ma demande. Mes données ne sont jamais revendues.</label>
       <button type="submit" class="bouton bouton-orange">Réserver mon audit gratuit →</button>
       <div class="merci">
         <h3>Demande reçue, merci !</h3>
@@ -596,8 +596,11 @@ const form = champ('formulaire');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   if (form.getAttribute("action")) {
+    const donnees = new URLSearchParams(new FormData(form));
+    donnees.append('page', location.href);
+    donnees.append('date', new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }));
     try {
-      await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      await fetch(form.action, { method: 'POST', mode: 'no-cors', body: donnees });
     } catch (err) { /* on affiche quand même le message */ }
   }
   form.classList.add('envoye');
